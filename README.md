@@ -2,6 +2,9 @@
 
 A generic optional type library for golang like the rust option enum
 
+[![GoReportCard example](https://goreportcard.com/badge/github.com/joetifa2003/option-go)](https://goreportcard.com/report/github.com/joetifa2003/option-go)
+[![GoDoc reference example](https://img.shields.io/badge/godoc-reference-blue.svg)](https://pkg.go.dev/github.com/joetifa2003/option-go)
+
 - [Option](#option)
 - [Installation](#installation)
 - [Create an optional](#create-an-optional)
