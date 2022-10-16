@@ -26,16 +26,16 @@ go get github.com/joetifa2003/option-go
 
 ```go
 optional := option.NewSome(10)
-fmt.PrintLn(optional.isSome()) // true
-fmt.PrintLn(optional.OrElse(14)) // 10 because it has a value of 10
+fmt.Println(optional.IsSome())   // true
+fmt.Println(optional.OrElse(14)) // 10 because it has a value of 10
 ```
 
 ## Without a value (None)
 
 ```go
-optional := option.NewNone[Int]()
-fmt.PrintLn(optional.isNone()) // true
-fmt.PrintLn(optional.OrElse(14)) // 14 because it has no value
+optional := option.NewNone[int]()
+fmt.Println(optional.IsNone())   // true
+fmt.Println(optional.OrElse(14)) // 14 because it has no value
 ```
 
 # Unwrap an optional
@@ -45,8 +45,8 @@ fmt.PrintLn(optional.OrElse(14)) // 14 because it has no value
 ```go
 optional := option.NewSome("John Doe")
 value, isSome := optional.Unwrap()
-fmt.PrintLn(value) // John Doe
-fmt.PrintLn(isSome) // true
+fmt.Println(value) // John Doe
+fmt.Println(isSome) // true
 ```
 
 ## Without a value (None)
@@ -54,8 +54,8 @@ fmt.PrintLn(isSome) // true
 ```go
 optional := option.NewNone[string]()
 value, isSome := optional.Unwrap()
-fmt.PrintLn(value) // "" zero value for type string
-fmt.PrintLn(isSome) // false
+fmt.Println(value) // "" zero value for type string
+fmt.Println(isSome) // false
 ```
 
 # Set an optional
@@ -65,14 +65,14 @@ fmt.PrintLn(isSome) // false
 ```go
 optional := option.NewNone[string]()
 value, isSome := optional.Unwrap()
-fmt.PrintLn(value) // "" zero value for type string
-fmt.PrintLn(isSome) // false
+fmt.Println(value) // "" zero value for type string
+fmt.Println(isSome) // false
 
 optional.SetSome("John Doe")
 
 value, isSome = optional.Unwrap()
-fmt.PrintLn(value) // John Doe
-fmt.PrintLn(isSome) // true
+fmt.Println(value) // John Doe
+fmt.Println(isSome) // true
 ```
 
 ## None
@@ -80,12 +80,12 @@ fmt.PrintLn(isSome) // true
 ```go
 optional := option.NewSome("John Doe")
 value, isSome := optional.Unwrap()
-fmt.PrintLn(value) // John Doe
-fmt.PrintLn(isSome) // true
+fmt.Println(value) // John Doe
+fmt.Println(isSome) // true
 
 optional.SetNone()
 
 value, isSome = optional.Unwrap()
-fmt.PrintLn(value) // "" zero value for type string
-fmt.PrintLn(isSome) // false
+fmt.Println(value) // "" zero value for type string
+fmt.Println(isSome) // false
 ```
