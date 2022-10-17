@@ -92,3 +92,5 @@ value, isSome = optional.Unwrap()
 fmt.Println(value) // "" zero value for type string
 fmt.Println(isSome) // false
 ```
+
+See all other methods in the documentation [here](https://pkg.go.dev/github.com/joetifa2003/option-go)
