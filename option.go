@@ -21,7 +21,7 @@ func NewNone[T any]() Option[T] {
 	}
 }
 
-// SetSome sets an option to a value (Some)
+// SetSome sets an option to a value
 func (o *Option[T]) SetSome(value T) {
 	o.value = value
 	o.isSome = true
@@ -35,7 +35,7 @@ func (o *Option[T]) SetNone() {
 	o.isSome = false
 }
 
-// Unwrap returns the value of an option if it is some and the zero value if it is none
+// Unwrap returns the value of an option if it is Some and the zero value if it is None
 func (o *Option[T]) Unwrap() (value T, isSome bool) {
 	return o.value, o.isSome
 }
@@ -50,11 +50,34 @@ func (o *Option[T]) IsNone() bool {
 	return !o.isSome
 }
 
-// Gets the value from an option and returns it if it's some and returns other if it's none
-func (o *Option[T]) OrElse(other T) T {
+// Or returns the contained Some value or a provided default
+func (o *Option[T]) Or(other T) T {
 	if o.isSome {
 		return o.value
 	}
 
 	return other
+}
+
+// OrElse returns the contained Some value or computes it from a closure.
+func (o *Option[T]) OrElse(f func() T) T {
+	if o.isSome {
+		return o.value
+	}
+
+	return f()
+}
+
+// IsSomeAnd returns true if the option is a Some and the value inside of it matches a predicate.
+func (o *Option[T]) IsSomeAnd(f func(T) bool) bool {
+	return o.isSome && f(o.value)
+}
+
+// Replace replaces the actual value in the option by the value given in parameter, returning the old value if present
+func (o *Option[T]) Replace(value T) Option[T] {
+	old := Option[T]{value: o.value, isSome: o.isSome}
+
+	o.SetSome(value)
+
+	return old
 }
